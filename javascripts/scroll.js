@@ -7,13 +7,12 @@ $(function() {
       return el != exclude
     })
 
-    return possibleStates[Math.floor(Math.random() * possibleStates.lenght)]
+    return possibleStates[Math.floor(Math.random() * possibleStates.length)]
   }
 
   function randomizeState() {
     let screen = $('.welcomeScreen');
     let currentState = screen.attr("data-state");
-    console.log(currentState);
     screen.attr('data-state', randomState(currentState));
   }
 
