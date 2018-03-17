@@ -1,13 +1,25 @@
 $(function() {
   const STATES = [0,1,2,3];
+  let timer;
 
-  function randomState() {
-    return STATES[Math.floor(Math.random() * 4)]
+  function randomState(exclude) {
+    let possibleStates = $.grep(STATES, function(el) {
+      return el != exclude
+    })
+
+    return possibleStates[Math.floor(Math.random() * possibleStates.lenght)]
+  }
+
+  function randomizeState() {
+    let screen = $('.welcomeScreen');
+    let currentState = screen.attr("data-state");
+    console.log(currentState);
+    screen.attr('data-state', randomState(currentState));
   }
 
   function animateUI() {
-    let screen = $('.welcomeScreen');
-    screen.attr('data-state', randomState());
+    clearTimeout(timer);
+    timer = setTimeout(randomizeState, 100)
   };
 
   $(".main").onepage_scroll({
